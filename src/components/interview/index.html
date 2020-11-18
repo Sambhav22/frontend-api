@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Add Interview</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #007BFF;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        #main {
+            font-size: 20px;
+            margin-left: 200px;
+        }
+
+        #main1 {
+            font-size: 16px;
+            margin-left: -10px;
+            margin-top: 3px;
+        }
+
+        #main2 {
+            font-size: 10px;
+            text-decoration: none;
+
+        }
+
+        .navbar-brand {
+            margin-left: 200px;
+            font-size: 200px;
+        }
+
+        .btn {
+            border: none;
+            color: white;
+            padding: 4px 4px;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+
+
+        .danger {
+            background-color: #f44336;
+            margin-left: 650px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul>
+        <li id="main"><a href="#home">Interview Creation App</a></li>
+        <li id="main1"><a href="#home">All Interviews</a></li>
+        <li id="main2"><button class="btn danger"><a href="http://localhost:3000/">
+                    Show Interviews</a>
+        </li>
+    </ul>
+    <!-- Interview -->
+    <span class="navbar-brand">Add Interview </span>
+
+    <main>
+        <div class="panel-body">
+            <div class="row">
+                <label class="control-label">Interviewer Name</label>
+                <select class="form-control" name="interviewer-name" id="interviewer-name">
+                </select>
+                <label class="control-label">Interviewee Name</label>
+                <select class="form-control" name="interviewer-name" id="interviewee-name">
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Start Time</label>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" id="start-time" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <label class="control-label">End Time</label>
+                <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' class="form-control" id="end-time" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+            <button id="submit-btn" onclick="myFunction()" class="btn btn-primary">Schedule</button>
+        </div>
+        </div>
+        <div class="container">
+            <table>
+                <thead>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+
+        <section hidden id="update-row">
+            <div class="container">
+                <div class="row">
+                    <div class='col-md-6'>
+                        <div class="form-group">
+                            <label class="control-label">Start Time</label>
+                            <div class='input-group date' id='datetimepickerUpdate1'>
+                                <input type='text' class="form-control" id="start-time-updated" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <div class="form-group">
+                            <label class="control-label">End Time</label>
+                            <div class='input-group date' id='datetimepickerUpdate2'>
+                                <input type='text' class="form-control" id="end-time-updated" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="update-row-btn" class="btn btn-primary">Update Interview</button>
+        </section>
+    </main>
+    <script src="index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+            $('#datetimepicker2').datetimepicker({
+                useCurrent: false
+            });
+            $("#datetimepicker1").on("dp.change", function (e) {
+                $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker2").on("dp.change", function (e) {
+                $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepickerUpdate1').datetimepicker();
+            $('#datetimepickerUpdate2').datetimepicker({
+                useCurrent: false
+            });
+            $("#datetimepickerUpdate1").on("dp.change", function (e) {
+                $('#datetimepickerUpdate2').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepickerUpdate2").on("dp.change", function (e) {
+                $('#datetimepickerUpdate1').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+
+    </script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</body>
+
+</html>
